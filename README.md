@@ -51,34 +51,38 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
-```c
+
+
 #include "main.h"
-#include "stdbool.h"
-bool button_status;
+#include<stdbool.h>
 
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+void push_button();
+bool button_status;
+
 int main(void)
 {
- 
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
   while (1)
   {
-	  	 button_status = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
-	  	 if (button_status == 0) {
-	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-	  		HAL_Delay(1000);
-	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	  		HAL_Delay(1000);
-	  	 }
-	  	 else {
-	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-	  		HAL_Delay(1000);
-	  	 }
-
+    push_button();
   }
+}
+
+void push_button()
+{
+	button_status= HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13);
+	if(button_status == 0)
+	{
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5, GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5, GPIO_PIN_RESET);
+	}
 }
 
 void SystemClock_Config(void)
@@ -95,7 +99,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
@@ -111,56 +114,32 @@ void SystemClock_Config(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : PC13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-} 
-void Error_Handler(void)
-{
-
-  __disable_irq();
-  while (1)
-  {
-  }
-  
 }
-
-#ifdef  USE_FULL_ASSERT
-
-void assert_failed(uint8_t *file, uint32_t line)
-{
-  
-}
-#endif /* USE_FULL_ASSERT */
-```
 
 
 ## Output  :
 
-<img width="500" height="557" alt="image" src="https://github.com/user-attachments/assets/de8f2f89-162f-4ba1-b297-993f5c57a5e7" />
-
-<img width="450" height="557" alt="image" src="https://github.com/user-attachments/assets/983eb7cb-67e1-42eb-9a98-25149c80dd78" />
+ SWITCH OFF:
  
-## layout of the circuit :
+![WhatsApp Image 2025-10-07 at 09 18 52_11037003](https://github.com/user-attachments/assets/67a0d14e-65ae-4c28-9dfa-fb73fc2876b7)
 
-<img width="667" height="848" alt="image" src="https://github.com/user-attachments/assets/232e6277-d5f6-4edb-8ff6-8e89ce07bc79" />
+ SWITCH ON:
+
+![WhatsApp Image 2025-10-07 at 09 18 53_7d740d72](https://github.com/user-attachments/assets/d94183d0-fbf3-4a72-acb2-423c38e71e00)
+
  
-
 ## Result :
 Interfacing a digital Input (Pushbutton ) with ARM microcontroller based IOT development is executed and the results are verified.
