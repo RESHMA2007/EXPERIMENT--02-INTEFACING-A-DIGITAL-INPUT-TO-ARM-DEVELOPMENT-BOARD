@@ -134,11 +134,11 @@ static void MX_GPIO_Init(void)
 
  SWITCH OFF:
  
-![WhatsApp Image 2025-10-07 at 09 18 52_11037003](https://github.com/user-attachments/assets/67a0d14e-65ae-4c28-9dfa-fb73fc2876b7)
+ ![WhatsApp Image 2025-10-10 at 04 56 34_b3933c6c](https://github.com/user-attachments/assets/32b99336-cfe6-43bb-8932-ee27a63eda30)
 
  SWITCH ON:
 
-![WhatsApp Image 2025-10-07 at 09 18 53_7d740d72](https://github.com/user-attachments/assets/d94183d0-fbf3-4a72-acb2-423c38e71e00)
+![WhatsApp Image 2025-10-10 at 04 56 50_6b01f0d9](https://github.com/user-attachments/assets/75100583-c88b-480b-a15c-a5086564cf2e)
 
  
 ## Result :
